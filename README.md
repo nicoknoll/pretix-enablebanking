@@ -33,7 +33,7 @@ The transaction import runs as a Celery task and uses Enable Banking's paginated
 Clone the repo and install into your pretix virtualenv:
 
 ```bash
-git clone https://github.com/nicokn/pretix-enablebanking.git
+git clone https://github.com/nicoknoll/pretix-enablebanking.git
 cd pretix-enablebanking
 pip install -e .
 ```
