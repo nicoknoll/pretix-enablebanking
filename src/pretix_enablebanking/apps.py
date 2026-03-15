@@ -25,5 +25,14 @@ class PluginApp(PluginConfig):
         compatibility = "pretix>=2.7.0"
         level = PLUGIN_LEVEL_ORGANIZER
 
+    def uninstalled(self, organizer):
+        from .models import EnableBankingConnection
+
+        for key in ('enablebanking_app_id', 'enablebanking_private_key',
+                    'enablebanking_fetch_interval', 'enablebanking_country'):
+            organizer.settings.delete(key)
+
+        EnableBankingConnection.objects.filter(organizer=organizer).delete()
+
     def ready(self):
         from . import signals  # NOQA
