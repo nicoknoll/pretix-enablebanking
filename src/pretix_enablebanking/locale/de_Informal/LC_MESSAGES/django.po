@@ -1,0 +1,478 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-14 18:11+0000\n"
+"PO-Revision-Date: 2026-03-14 12:00+0100\n"
+"Language-Team: German (Informal)\n"
+"Language: de_Informal\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: pretix/plugins/pretix_enablebanking/apps.py:16
+msgid "Enable Banking"
+msgstr "Enable Banking"
+
+#: pretix/plugins/pretix_enablebanking/apps.py:19
+msgid ""
+"Automatically import bank transactions via Enable Banking (PSD2/Open "
+"Banking) into the pretix bank transfer pipeline."
+msgstr ""
+"Automatischer Import von Banktransaktionen über Enable Banking (PSD2/Open "
+"Banking) in die pretix Banküberweisung-Pipeline."
+
+#: pretix/plugins/pretix_enablebanking/forms.py:9
+msgid "Application ID"
+msgstr "Anwendungs-ID"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:11
+msgid "Your Enable Banking application ID."
+msgstr "Deine Enable Banking Anwendungs-ID."
+
+#: pretix/plugins/pretix_enablebanking/forms.py:14
+msgid "Private Key (PEM)"
+msgstr "Privater Schlüssel (PEM)"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:17
+msgid ""
+"Your RSA private key in PEM format for Enable Banking API authentication."
+msgstr ""
+"Dein RSA-Privatschlüssel im PEM-Format für die Enable Banking API-"
+"Authentifizierung."
+
+#: pretix/plugins/pretix_enablebanking/forms.py:20
+msgid "Automatic fetch interval"
+msgstr "Automatisches Abrufintervall"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:22
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:23
+msgid "Every hour"
+msgstr "Stündlich"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:24
+msgid "Every 4 hours"
+msgstr "Alle 4 Stunden"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:25
+msgid "Every 12 hours"
+msgstr "Alle 12 Stunden"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:26
+msgid "Every 24 hours"
+msgstr "Alle 24 Stunden"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:30
+msgid "How often to automatically fetch new transactions."
+msgstr "Wie oft neue Transaktionen automatisch abgerufen werden sollen."
+
+#: pretix/plugins/pretix_enablebanking/forms.py:33
+msgid "Country"
+msgstr "Land"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:37
+msgid "Austria"
+msgstr "Österreich"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:38
+msgid "Belgium"
+msgstr "Belgien"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:39
+msgid "Bulgaria"
+msgstr "Bulgarien"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:40
+msgid "Croatia"
+msgstr "Kroatien"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:41
+msgid "Cyprus"
+msgstr "Zypern"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:42
+msgid "Czech Republic"
+msgstr "Tschechien"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:43
+msgid "Denmark"
+msgstr "Dänemark"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:44
+msgid "Estonia"
+msgstr "Estland"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:45
+msgid "Finland"
+msgstr "Finnland"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:46
+msgid "France"
+msgstr "Frankreich"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:47
+msgid "Germany"
+msgstr "Deutschland"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:48
+msgid "Greece"
+msgstr "Griechenland"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:49
+msgid "Hungary"
+msgstr "Ungarn"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:50
+msgid "Iceland"
+msgstr "Island"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:51
+msgid "Ireland"
+msgstr "Irland"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:52
+msgid "Italy"
+msgstr "Italien"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:53
+msgid "Latvia"
+msgstr "Lettland"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:54
+msgid "Liechtenstein"
+msgstr "Liechtenstein"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:55
+msgid "Lithuania"
+msgstr "Litauen"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:56
+msgid "Luxembourg"
+msgstr "Luxemburg"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:57
+msgid "Malta"
+msgstr "Malta"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:58
+msgid "Netherlands"
+msgstr "Niederlande"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:59
+msgid "Norway"
+msgstr "Norwegen"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:60
+msgid "Poland"
+msgstr "Polen"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:61
+msgid "Portugal"
+msgstr "Portugal"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:62
+msgid "Romania"
+msgstr "Rumänien"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:63
+msgid "Slovakia"
+msgstr "Slowakei"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:64
+msgid "Slovenia"
+msgstr "Slowenien"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:65
+msgid "Spain"
+msgstr "Spanien"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:66
+msgid "Sweden"
+msgstr "Schweden"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:67
+msgid "United Kingdom"
+msgstr "Vereinigtes Königreich"
+
+#: pretix/plugins/pretix_enablebanking/forms.py:69
+msgid "Country to filter available banks."
+msgstr "Land zur Filterung verfügbarer Banken."
+
+#: pretix/plugins/pretix_enablebanking/models.py:12
+msgid "Unconfigured"
+msgstr "Nicht konfiguriert"
+
+#: pretix/plugins/pretix_enablebanking/models.py:13
+msgid "Awaiting authorization"
+msgstr "Wartet auf Autorisierung"
+
+#: pretix/plugins/pretix_enablebanking/models.py:14
+msgid "Active"
+msgstr "Aktiv"
+
+#: pretix/plugins/pretix_enablebanking/models.py:15
+msgid "Expired"
+msgstr "Abgelaufen"
+
+#: pretix/plugins/pretix_enablebanking/models.py:16
+msgid "Error"
+msgstr "Fehler"
+
+#: pretix/plugins/pretix_enablebanking/signals.py:25
+msgid "Automatic import"
+msgstr "Automatischer Import"
+
+#: pretix/plugins/pretix_enablebanking/signals.py:35
+msgid "Enable Banking settings"
+msgstr "Enable Banking-Einstellungen"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:9
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:11
+msgid "Automatic Import"
+msgstr "Automatischer Import"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:16
+msgid ""
+"Connected to an Enable Banking mock ASPSP. This is a test connection — no "
+"real bank data is used."
+msgstr ""
+"Mit einem Enable Banking Mock-ASPSP verbunden. Dies ist eine Testverbindung "
+"– es werden keine echten Bankdaten verwendet."
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:24
+msgid "Fetch Transactions"
+msgstr "Transaktionen abrufen"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:32
+msgid "Transactions from date"
+msgstr "Transaktionen ab Datum"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:37
+msgid "Fetch now"
+msgstr "Jetzt abrufen"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:41
+msgid "No active bank connection."
+msgstr "Keine aktive Bankverbindung."
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:55
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:20
+#, python-format
+msgid "Connected to %(name)s"
+msgstr "Verbunden mit %(name)s"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:62
+#, python-format
+msgid "Connected since %(date)s"
+msgstr "Verbunden seit %(date)s"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:68
+#, python-format
+msgid "Bank link expires on %(date)s."
+msgstr "Der Bankzugang läuft am %(date)s ab."
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:91
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:83
+msgid "Awaiting bank authorization"
+msgstr "Wartet auf Bankautorisierung"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:96
+#, python-format
+msgid ""
+"Please complete bank authorization for %(name)s. If you have not been "
+"redirected yet, click the button below."
+msgstr ""
+"Bitte schließe die Bankautorisierung für %(name)s ab. Falls du noch nicht "
+"weitergeleitet wurdest, klicke auf die Schaltfläche unten."
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:103
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:94
+msgid "Continue to bank authorization"
+msgstr "Zur Bankautorisierung fortfahren"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:110
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:187
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:173
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:121
+msgid "No bank connected"
+msgstr "Keine Bank verbunden"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:126
+#, python-format
+msgid ""
+"No bank account connected. Please <a href=\"%(url)s\">go to Enable Banking "
+"settings</a> to connect a bank account."
+msgstr ""
+"Kein Bankkonto verbunden. Bitte <a href=\"%(url)s\">rufe die Enable "
+"Banking-Einstellungen auf</a>, um ein Bankkonto zu verbinden."
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:142
+msgid "ID"
+msgstr "ID"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:143
+msgid "Created"
+msgstr "Erstellt"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:144
+msgid "State"
+msgstr "Status"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:145
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:40
+msgid "Currency"
+msgstr "Währung"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:164
+msgid "No import jobs yet."
+msgstr "Noch keine Importaufträge."
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:173
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:181
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:189
+msgid "Clear import history"
+msgstr "Importverlauf löschen"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/import.html:184
+msgid ""
+"This will delete all import jobs and allow transactions to be re-imported. "
+"Continue?"
+msgstr ""
+"Dies löscht alle Importaufträge und ermöglicht den erneuten Import von "
+"Transaktionen. Fortfahren?"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:11
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:13
+msgid "Enable Banking Settings"
+msgstr "Enable Banking-Einstellungen"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:34
+msgid "select all rows"
+msgstr "Alle Zeilen auswählen"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:38
+msgid "Account"
+msgstr "Konto"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:39
+msgid "IBAN"
+msgstr "IBAN"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:47
+msgid "select row"
+msgstr "Zeile auswählen"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:63
+msgid "Save account selection"
+msgstr "Kontoauswahl speichern"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:67
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:167
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:175
+msgid "Disconnect bank"
+msgstr "Bank trennen"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:88
+#, python-format
+msgid "Please complete bank authorization for %(name)s."
+msgstr "Bitte schließe die Bankautorisierung für %(name)s ab."
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:102
+msgid "Connect a bank account"
+msgstr "Bankkonto verbinden"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:105
+msgid "Select your bank to connect via Enable Banking."
+msgstr "Wähle deine Bank, um dich über Enable Banking zu verbinden."
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:110
+msgid "Bank"
+msgstr "Bank"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:126
+msgid "Connect with bank"
+msgstr "Mit Bank verbinden"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:134
+#, python-format
+msgid ""
+"Enable Banking API error: %(error)s. Please verify your API credentials."
+msgstr ""
+"Enable Banking API-Fehler: %(error)s. Bitte überprüfe deine API-"
+"Zugangsdaten."
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:144
+msgid "API Credentials"
+msgstr "API-Zugangsdaten"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:150
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:157
+msgid "Save"
+msgstr "Speichern"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:170
+msgid "Are you sure you want to disconnect?"
+msgstr "Bist du sicher, dass du die Verbindung trennen möchtest?"
+
+#: pretix/plugins/pretix_enablebanking/views.py:76
+#: pretix/plugins/pretix_enablebanking/views.py:229
+msgid "Bank connection removed."
+msgstr "Bankverbindung entfernt."
+
+#: pretix/plugins/pretix_enablebanking/views.py:88
+msgid "Account selection saved."
+msgstr "Kontoauswahl gespeichert."
+
+#: pretix/plugins/pretix_enablebanking/views.py:103
+#: pretix/plugins/pretix_enablebanking/views.py:263
+msgid "Enable Banking credentials not configured."
+msgstr "Enable Banking-Zugangsdaten nicht konfiguriert."
+
+#: pretix/plugins/pretix_enablebanking/views.py:127
+#, python-brace-format
+msgid "Enable Banking error: {error}"
+msgstr "Enable Banking-Fehler: {error}"
+
+#: pretix/plugins/pretix_enablebanking/views.py:144
+msgid "Settings saved."
+msgstr "Einstellungen gespeichert."
+
+#: pretix/plugins/pretix_enablebanking/views.py:209
+msgid "No active bank connection found."
+msgstr "Keine aktive Bankverbindung gefunden."
+
+#: pretix/plugins/pretix_enablebanking/views.py:218
+msgid "Transaction fetch started. Results will appear shortly."
+msgstr "Transaktionsabruf gestartet. Ergebnisse erscheinen in Kürze."
+
+#: pretix/plugins/pretix_enablebanking/views.py:224
+#, python-brace-format
+msgid "Import history cleared ({n} jobs removed)."
+msgstr "Importverlauf geleert ({n} Aufträge entfernt)."
+
+#: pretix/plugins/pretix_enablebanking/views.py:252
+msgid "No pending bank authorization found."
+msgstr "Keine ausstehende Bankautorisierung gefunden."
+
+#: pretix/plugins/pretix_enablebanking/views.py:257
+msgid "No authorization code received from bank."
+msgstr "Kein Autorisierungscode von der Bank erhalten."
+
+#: pretix/plugins/pretix_enablebanking/views.py:270
+msgid "Failed to create bank session. Please try again."
+msgstr "Banksitzung konnte nicht erstellt werden. Bitte versuche es erneut."
+
+#: pretix/plugins/pretix_enablebanking/views.py:302
+msgid "Bank connection established successfully."
+msgstr "Bankverbindung erfolgreich hergestellt."

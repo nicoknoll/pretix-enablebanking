@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pretix-enablebanking"
+version = "1.0.0"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "pretix>=2.7.0",
+    "requests",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pretix_enablebanking"]
+
+[project.entry-points."pretix.plugin"]
+pretix_enablebanking = "pretix_enablebanking.apps:PluginApp"

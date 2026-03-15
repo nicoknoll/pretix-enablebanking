@@ -1,0 +1,200 @@
+{% extends "pretixcontrol/organizers/base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block custom_header %}{% endblock %}
+
+{% block title %}{% trans "Automatic Import" %}{% endblock %}
+{% block content %}
+    <h1>{% trans "Automatic Import" %}</h1>
+
+    {% if sandbox_mode %}
+        <div class="alert alert-info">
+            <i class="fa fa-flask"></i>
+            {% trans "Connected to an Enable Banking mock ASPSP. This is a test connection — no real bank data is used." %}
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-6 eb-h-full">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{% trans "Fetch Transactions" %}</h3>
+                </div>
+                <div class="panel-body">
+                    {% if connection and connection.state == 'active' %}
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="fetch_now">
+                            <div class="form-group">
+                                <label for="date_from">{% trans "Transactions from date" %}</label>
+                                <input type="date" name="date_from" id="date_from" class="form-control"
+                                       value="{{ date_from_default }}">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-download"></i> {% trans "Fetch now" %}
+                                </button>
+                            </div>
+                        </form>
+                    {% else %}
+                        <p class="text-muted">{% trans "No active bank connection." %}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6 eb-h-full">
+
+            {% if connection and connection.state == 'active' %}
+                {% with expires=connection.connection_expires_at %}
+                <div class="panel {% if connection_expiry_warning %}panel-warning{% else %}panel-success{% endif %}">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="fa fa-check-circle"></i>
+                            {% blocktrans trimmed with name=connection.aspsp_name %}
+                                Connected to {{ name }}
+                            {% endblocktrans %}
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            {% blocktrans trimmed with date=connection.created|date:"SHORT_DATETIME_FORMAT" %}
+                                Connected since {{ date }}
+                            {% endblocktrans %}
+                        </p>
+                        {% if expires %}
+                            <p>
+                                {% blocktrans trimmed with date=expires|date:"SHORT_DATE_FORMAT" %}
+                                    Bank link expires on {{ date }}.
+                                {% endblocktrans %}
+                            </p>
+                        {% endif %}
+                        {% if accounts %}
+                            <p>
+                                {% for account in accounts %}
+                                    {% if account.is_active %}
+                                        <span class="label label-success">{{ account.account_name }}{% if account.iban %} &middot; {{ account.iban }}{% endif %}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endwith %}
+
+            {% elif connection and connection.state == 'awaiting_auth' %}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="fa fa-clock-o"></i>
+                            {% trans "Awaiting bank authorization" %}
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            {% blocktrans trimmed with name=connection.aspsp_name %}
+                                Please complete bank authorization for {{ name }}.
+                                If you have not been redirected yet, click the button below.
+                            {% endblocktrans %}
+                        </p>
+                        {% if connection.auth_link %}
+                            <a href="{{ connection.auth_link }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-external-link"></i> {% trans "Continue to bank authorization" %}
+                            </a>
+                        {% endif %}
+                        <div class="form-group">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="disconnect">
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <i class="fa fa-times"></i> {% trans "Cancel" %}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            {% else %}
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            {% trans "No bank connected" %}
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        {% url 'plugins:pretix_enablebanking:settings' organizer=request.organizer.slug as settings_url %}
+                        {% blocktrans trimmed with url=settings_url %}
+                            No bank account connected. Please
+                            <a href="{{ url }}">go to Enable Banking settings</a>
+                            to connect a bank account.
+                        {% endblocktrans %}
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    {% if recent_jobs %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans "ID" %}</th>
+                    <th>{% trans "Created" %}</th>
+                    <th>{% trans "State" %}</th>
+                    <th>{% trans "Currency" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in recent_jobs %}
+                <tr>
+                    <td>
+                        <a href="{% url 'plugins:banktransfer:import.job' organizer=request.organizer.slug job=job.pk %}">
+                            #{{ job.pk }}
+                        </a>
+                    </td>
+                    <td>{{ job.created|date:"SHORT_DATETIME_FORMAT" }}</td>
+                    <td>{{ job.get_state_display }}</td>
+                    <td>{{ job.currency }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-muted">{% trans "No import jobs yet." %}</p>
+    {% endif %}
+
+    <form id="clear-history-form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="clear_history">
+    </form>
+
+    <p>
+        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#clear-history-modal">
+            <i class="fa fa-trash"></i> {% trans "Clear import history" %}
+        </button>
+    </p>
+
+    <div class="modal fade" id="clear-history-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title">{% trans "Clear import history" %}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{% trans "This will delete all import jobs and allow transactions to be re-imported. Continue?" %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Cancel" %}</button>
+                    <button type="submit" form="clear-history-form" class="btn btn-danger">
+                        <i class="fa fa-trash"></i> {% trans "Clear import history" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,183 @@
+{% extends "pretixcontrol/organizers/base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block custom_header %}
+    <script src="{% static "pretix_enablebanking/pretix_enablebanking.js" %}"></script>
+{% endblock %}
+
+{% block title %}{% trans "Enable Banking Settings" %}{% endblock %}
+{% block content %}
+    <h1>{% trans "Enable Banking Settings" %}</h1>
+
+    {% if connection and connection.state == 'active' %}
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <i class="fa fa-check-circle"></i>
+                    {% blocktrans trimmed with name=connection.aspsp_name %}
+                        Connected to {{ name }}
+                    {% endblocktrans %}
+                </h3>
+            </div>
+            <div class="panel-body">
+                {% if accounts %}
+                    <form method="post" action="{% url 'plugins:pretix_enablebanking:settings' organizer=request.organizer.slug %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="update_accounts">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <label class="batch-select-label" aria-label="{% trans "select all rows" %}">
+                                            <input type="checkbox" data-toggle-table>
+                                        </label>
+                                    </th>
+                                    <th>{% trans "Account" %}</th>
+                                    <th>{% trans "IBAN" %}</th>
+                                    <th>{% trans "Currency" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for account in accounts %}
+                                <tr>
+                                    <td>
+                                        <label class="batch-select-label" aria-label="{% trans "select row" %}">
+                                            <input type="checkbox" name="active_accounts" value="{{ account.pk }}"
+                                                   class="batch-select-checkbox"
+                                                   {% if account.is_active %}checked{% endif %}>
+                                        </label>
+                                    </td>
+                                    <td>{{ account.account_name }}</td>
+                                    <td><code>{{ account.iban }}</code></td>
+                                    <td>{{ account.currency }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <div class="clearfix">
+                            <button type="submit" class="btn btn-primary btn-sm pull-left">
+                                {% trans "Save account selection" %}
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm pull-right"
+                                    data-toggle="modal" data-target="#disconnect-modal">
+                                <i class="fa fa-unlink"></i> {% trans "Disconnect bank" %}
+                            </button>
+                        </div>
+                    </form>
+                    <form id="disconnect-form" method="post" action="{% url 'plugins:pretix_enablebanking:settings' organizer=request.organizer.slug %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="disconnect">
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    {% elif connection and connection.state == 'awaiting_auth' %}
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <i class="fa fa-clock-o"></i>
+                    {% trans "Awaiting bank authorization" %}
+                </h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    {% blocktrans trimmed with name=connection.aspsp_name %}
+                        Please complete bank authorization for {{ name }}.
+                    {% endblocktrans %}
+                </p>
+                {% if connection.auth_link %}
+                    <a href="{{ connection.auth_link }}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-external-link"></i> {% trans "Continue to bank authorization" %}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% elif has_credentials %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{% trans "Connect a bank account" %}</h3>
+            </div>
+            <div class="panel-body">
+                <p>{% trans "Select your bank to connect via Enable Banking." %}</p>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="connect_bank">
+                    <div class="form-group">
+                        <label for="aspsp_select">{% trans "Bank" %} ({{ country }})</label>
+                        <select name="aspsp_select" id="aspsp_select" class="form-control">
+                            {% for aspsp in aspsps %}
+                                <option value="{{ aspsp.name }}|{{ aspsp.country }}"
+                                        data-name="{{ aspsp.name }}"
+                                        data-country="{{ aspsp.country }}"
+                                        data-mcv="{{ aspsp.maximum_consent_validity|default:'' }}">
+                                    {{ aspsp.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input type="hidden" name="aspsp_name" id="aspsp_name">
+                        <input type="hidden" name="aspsp_country" id="aspsp_country">
+                        <input type="hidden" name="maximum_consent_validity" id="maximum_consent_validity">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-university"></i> {% trans "Connect with bank" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% elif credentials_error %}
+        <div class="alert alert-danger">
+            {% url 'plugins:pretix_enablebanking:settings' organizer=request.organizer.slug as settings_url %}
+            {% blocktrans trimmed with error=credentials_error %}
+                Enable Banking API error: {{ error }}. Please verify your API credentials.
+            {% endblocktrans %}
+        </div>
+    {% endif %}
+
+    <form action="" method="post" class="form-horizontal">
+        {% csrf_token %}
+
+        <fieldset>
+            <legend>{% trans "API Credentials" %}</legend>
+            {% bootstrap_field form.enablebanking_app_id layout="horizontal" %}
+            {% bootstrap_field form.enablebanking_private_key layout="horizontal" %}
+        </fieldset>
+
+        <fieldset>
+            <legend>{% trans "Configuration" %}</legend>
+            {% bootstrap_field form.enablebanking_country layout="horizontal" %}
+            {% bootstrap_field form.enablebanking_fetch_interval layout="horizontal" %}
+        </fieldset>
+
+        <div class="form-group submit-group">
+            <button type="submit" class="btn btn-primary btn-save">
+                {% trans "Save" %}
+            </button>
+        </div>
+    </form>
+
+    <div class="modal fade" id="disconnect-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title">{% trans "Disconnect bank" %}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{% trans "Are you sure you want to disconnect?" %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Cancel" %}</button>
+                    <button type="submit" form="disconnect-form" class="btn btn-danger">
+                        <i class="fa fa-unlink"></i> {% trans "Disconnect bank" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,4 @@
+[plugin]
+package = "pretix-enablebanking"
+modules = ["pretix_enablebanking"]
+marketplace_name = "enablebanking"
