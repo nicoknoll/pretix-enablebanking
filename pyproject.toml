@@ -5,15 +5,29 @@ build-backend = "hatchling.build"
 [project]
 name = "pretix-enablebanking"
 version = "1.0.0"
+description = "Automatically import bank transactions via Enable Banking (PSD2/Open Banking) into pretix"
+readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
+keywords = ["pretix"]
+authors = [
+    {name = "Nico Knoll", email = "mail@nico.is"},
+]
 dependencies = [
     "pretix>=2.7.0",
     "requests",
 ]
 
+[project.urls]
+Homepage = "https://github.com/nicoknoll/pretix-enablebanking"
+Repository = "https://github.com/nicoknoll/pretix-enablebanking"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/pretix_enablebanking"]
+core-metadata-version = "2.3"
+
+[tool.hatch.build.targets.sdist]
+core-metadata-version = "2.3"
 
 [project.entry-points."pretix.plugin"]
 pretix_enablebanking = "pretix_enablebanking.apps:PluginApp"

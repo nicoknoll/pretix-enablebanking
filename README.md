@@ -30,12 +30,8 @@ The transaction import runs as a Celery task and uses Enable Banking's paginated
 
 ## Installation
 
-Clone the repo and install into your pretix virtualenv:
-
 ```bash
-git clone https://github.com/nicoknoll/pretix-enablebanking.git
-cd pretix-enablebanking
-pip install -e .
+pip install pretix-enablebanking
 ```
 
 Then run migrations and restart the server:
@@ -45,6 +41,14 @@ python -m pretix migrate
 ```
 
 The plugin registers itself automatically via the `pretix.plugin` entry point — no manual `INSTALLED_APPS` edit needed.
+
+### Development installation
+
+```bash
+git clone https://github.com/nicoknoll/pretix-enablebanking.git
+cd pretix-enablebanking
+pip install -e .
+```
 
 ## Setup in pretix
 
