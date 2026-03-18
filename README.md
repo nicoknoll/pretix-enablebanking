@@ -13,11 +13,11 @@ Connects pretix to your bank via [Enable Banking](https://enablebanking.com) (PS
 
 **Import — manual fetch & job history**
 
-![Import](docs/images/import.png)
+![Import](https://raw.githubusercontent.com/nicoknoll/pretix-enablebanking/main/docs/images/import.png)
 
 **Settings — bank connection & API credentials**
 
-![Settings](docs/images/settings.png)
+![Settings](https://raw.githubusercontent.com/nicoknoll/pretix-enablebanking/main/docs/images/settings.png)
 
 ## How it works
 

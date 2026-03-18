@@ -80,12 +80,23 @@ def fetch_enablebanking_transactions(self, organizer_id, account_id=None, date_f
                 payer = (tx.get('debtor') or {}).get('name', '') \
                         or (tx.get('creditor') or {}).get('name', '')
 
+                iban = (tx.get('debtor_account') or {}).get('iban', '') \
+                       or (tx.get('creditor_account') or {}).get('iban', '')
+                bic = (tx.get('debtor_account') or {}).get('bic', '') \
+                      or (tx.get('creditor_account') or {}).get('bic', '')
+
+                ref_number = tx.get('reference_number', '')
+                if ref_number and ref_number not in reference:
+                    reference = f"{reference} {ref_number}".strip()
+
                 transactions.append({
                     'amount': str(amount),
                     'reference': reference,
                     'payer': payer,
                     'date': tx.get('booking_date', '') or tx.get('value_date', ''),
                     'external_id': tx.get('entry_reference', '') or tx.get('transaction_id', ''),
+                    'iban': iban,
+                    'bic': bic,
                 })
 
             job = BankImportJob.objects.create(
