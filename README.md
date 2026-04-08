@@ -57,7 +57,7 @@ pip install -e .
 1. Sign up at [https://enablebanking.com/cp/applications](https://enablebanking.com/cp/applications) and create an application.
 2. Generate an RSA key pair. Register the public key with Enable Banking and keep the private key (PEM format).
 3. Note your **Application ID**.
-4. Set the redirect URL to [https://**your.domain**/control/organizer/**organizer**/enablebanking/callback/](https://**your.domain**/control/organizer/**organizer**/enablebanking/callback/) (apply your own settings for "your.domain" and "organizer")
+4. Set the redirect URL to [https://**your.domain**/control/organizer/**organizer**/enablebanking/callback/](https://**your.domain**/control/organizer/**example**/enablebanking/callback/) (apply your own settings for "your.domain" and "example")
 
 ### 2. Configure the plugin
 
