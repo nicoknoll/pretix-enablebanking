@@ -112,7 +112,8 @@
                                 <option value="{{ aspsp.name }}|{{ aspsp.country }}"
                                         data-name="{{ aspsp.name }}"
                                         data-country="{{ aspsp.country }}"
-                                        data-mcv="{{ aspsp.maximum_consent_validity|default:'' }}">
+                                        data-mcv="{{ aspsp.maximum_consent_validity|default:'' }}"
+                                        data-psu-types="{{ aspsp.psu_types|join:',' }}">
                                     {{ aspsp.name }}
                                 </option>
                             {% endfor %}
@@ -120,6 +121,13 @@
                         <input type="hidden" name="aspsp_name" id="aspsp_name">
                         <input type="hidden" name="aspsp_country" id="aspsp_country">
                         <input type="hidden" name="maximum_consent_validity" id="maximum_consent_validity">
+                    </div>
+                    <div class="form-group">
+                        <label for="psu_type">{% trans "Account type" %}</label>
+                        <select name="psu_type" id="psu_type" class="form-control">
+                            <option value="personal">{% trans "Personal" %}</option>
+                            <option value="business">{% trans "Business" %}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">

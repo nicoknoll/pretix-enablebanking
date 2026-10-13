@@ -52,7 +52,8 @@ class EnableBankingClient:
         resp.raise_for_status()
         return resp.json().get("aspsps", [])
 
-    def create_auth(self, aspsp_name, aspsp_country, redirect_url, maximum_consent_validity=None):
+    def create_auth(self, aspsp_name, aspsp_country, redirect_url, maximum_consent_validity=None,
+                    psu_type="personal"):
         # Use the ASPSP's maximum_consent_validity (seconds) if provided, else fall back to 90 days
         seconds = maximum_consent_validity if maximum_consent_validity else 90 * 24 * 3600
         valid_until = (
@@ -64,7 +65,7 @@ class EnableBankingClient:
             "aspsp": {"name": aspsp_name, "country": aspsp_country},
             "state": str(uuid.uuid4()),
             "redirect_url": redirect_url,
-            "psu_type": "personal",
+            "psu_type": psu_type,
         }
         resp = requests.post(
             f"{self.BASE_URL}/auth",

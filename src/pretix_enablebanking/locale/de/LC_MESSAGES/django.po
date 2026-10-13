@@ -401,6 +401,18 @@ msgstr "Bank"
 msgid "Connect with bank"
 msgstr "Mit Bank verbinden"
 
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html
+msgid "Account type"
+msgstr "Kontotyp"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html
+msgid "Personal"
+msgstr "Privat"
+
+#: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html
+msgid "Business"
+msgstr "Geschäftlich"
+
 #: pretix/plugins/pretix_enablebanking/templates/pretix_enablebanking/settings.html:134
 #, python-format
 msgid ""

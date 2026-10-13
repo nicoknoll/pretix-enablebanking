@@ -123,11 +123,16 @@ class EnableBankingSettingsView(OrganizerDetailViewMixin, OrganizerPermissionReq
         mcv_str = request.POST.get('maximum_consent_validity', '')
         maximum_consent_validity = int(mcv_str) if mcv_str.isdigit() else None
 
+        psu_type = request.POST.get('psu_type', '')
+        if psu_type not in ('personal', 'business'):
+            psu_type = 'personal'
+
         try:
             auth_data = client.create_auth(
                 aspsp_name, aspsp_country,
                 redirect_url=callback_url,
                 maximum_consent_validity=maximum_consent_validity,
+                psu_type=psu_type,
             )
 
         except Exception as e:
@@ -293,8 +298,15 @@ class EnableBankingCallbackView(OrganizerDetailViewMixin, OrganizerPermissionReq
         for acct in session.get('accounts', []):
             logger.debug('Enable Banking account data: %s', acct)
             uid = acct.get('uid', '')
+
+            account_id = acct.get('account_id', {})
+            if not account_id:
+                logging.debug('Skipping account with empty account_id: %s', acct)
+                continue
+
             iban = acct.get('account_id', {}).get('iban') or ''
             if not uid or not iban:
+                logging.debug('Skipping account with missing uid or iban: %s', acct)
                 continue
 
             EnableBankingAccount.objects.update_or_create(
